@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Archivo: menu_lateral.xml
+    Descripción:
+    Menú lateral (Navigation Drawer) principal de la aplicación.
+    Contiene las secciones accesibles desde cualquier pantalla del sistema,
+    organizadas en un solo grupo con comportamiento checkable (selección única).
+-->
+
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Grupo de opciones principales -->
+    <group android:checkableBehavior="single">
+
+        <!-- Sección de inicio -->
+        <item
+            android:id="@+id/nav_home"
+            android:icon="@android:drawable/ic_menu_today"
+            android:title="Inicio" />
+
+        <!-- Registrar una nueva clase -->
+        <item
+            android:id="@+id/nav_registro_clase"
+            android:icon="@android:drawable/ic_menu_edit"
+            android:title="Registrar Clase" />
+
+        <!-- Ver todas las clases registradas -->
+        <item
+            android:id="@+id/nav_ver_horario"
+            android:icon="@android:drawable/ic_menu_agenda"
+            android:title="Ver Horario" />
+
+        <!-- Crear una nueva tarea o examen -->
+        <item
+            android:id="@+id/nav_nueva_tarea"
+            android:icon="@android:drawable/ic_menu_add"
+            android:title="Nueva Tarea / Examen" />
+
+        <!-- Consultar tareas o exámenes pendientes -->
+        <item
+            android:id="@+id/nav_ver_tareas"
+            android:icon="@android:drawable/ic_menu_my_calendar"
+            android:title="Ver Tareas Pendientes" />
+
+        <!-- Acceso al panel resumen o Dashboard -->
+        <item
+            android:id="@+id/nav_dashboard"
+            android:icon="@android:drawable/ic_menu_rotate"
+            android:title="Dashboard" />
+
+        <!-- Configuración, perfil y respaldo de datos -->
+        <item
+            android:id="@+id/nav_perfil"
+            android:icon="@android:drawable/ic_menu_preferences"
+            android:title="Configuración y Backup" />
+
+    </group>
+</menu>

@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Layout: activity_perfil.xml
+    Descripción:
+    Pantalla de perfil y configuración del usuario.
+    Permite visualizar y editar la información del perfil (nombre y carrera),
+    habilitar el modo oscuro, y exportar/importar los datos del sistema en formato JSON.
+    Incluye un botón flotante para activar el modo de edición y un menú lateral (Navigation Drawer)
+    para acceder a las demás secciones de la aplicación.
+-->
+
+<androidx.drawerlayout.widget.DrawerLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawer_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".PerfilActivity">
+
+    <!-- Contenedor principal -->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/fondo_pantalla">
+
+        <!-- Contenido principal en estructura vertical -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <!-- Barra superior con botón de menú y título -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="16dp"
+                android:gravity="center_vertical">
+
+                <!-- Botón para abrir el menú lateral -->
+                <ImageButton
+                    android:id="@+id/btnMenu"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:src="@android:drawable/ic_menu_sort_by_size"
+                    app:tint="@color/icono_menu" />
+
+                <!-- Título centrado -->
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Configuración y Perfil"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/texto_principal"
+                    android:gravity="center"
+                    android:layout_marginEnd="32dp"/>
+            </LinearLayout>
+
+            <!-- Contenido desplazable -->
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="24dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:gravity="center_horizontal">
+
+                    <!-- Imagen del perfil -->
+                    <ImageView
+                        android:id="@+id/imgPerfil"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:src="@mipmap/ic_launcher_round"
+                        android:layout_marginBottom="16dp"
+                        android:clickable="false"
+                        android:focusable="false"/>
+
+                    <!-- Campo de nombre -->
+                    <EditText
+                        android:id="@+id/etNombrePerfil"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:hint="Tu Nombre"
+                        android:textSize="24sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/texto_principal"
+                        android:layout_marginBottom="4dp"
+                        android:focusable="false"
+                        android:focusableInTouchMode="false"/>
+
+                    <!-- Campo de carrera -->
+                    <EditText
+                        android:id="@+id/etCarreraPerfil"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:hint="Tu Carrera"
+                        android:textColor="@color/texto_secundario"
+                        android:layout_marginBottom="24dp"
+                        android:focusable="false"
+                        android:focusableInTouchMode="false"/>
+
+                    <!-- Botón para guardar los cambios (visible solo en modo edición) -->
+                    <Button
+                        android:id="@+id/btnGuardarPerfil"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:text="Guardar Perfil"
+                        android:backgroundTint="#03DAC5"
+                        android:textColor="@color/black"
+                        android:layout_marginBottom="32dp"
+                        app:cornerRadius="12dp"
+                        android:visibility="gone"/>
+
+                    <!-- Sección de apariencia -->
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Apariencia"
+                        android:textStyle="bold"
+                        android:textColor="@color/purple_500"
+                        android:layout_marginBottom="8dp"/>
+
+                    <!-- Switch de modo oscuro -->
+                    <com.google.android.material.switchmaterial.SwitchMaterial
+                        android:id="@+id/switchModoOscuro"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Modo Oscuro"
+                        android:textColor="@color/texto_principal"
+                        android:padding="16dp"
+                        android:background="@color/fondo_tarjeta"
+                        android:layout_marginBottom="24dp"/>
+
+                    <!-- Sección de respaldo de datos -->
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Copia de Seguridad (JSON)"
+                        android:textStyle="bold"
+                        android:textColor="@color/purple_500"
+                        android:layout_marginBottom="8dp"/>
+
+                    <!-- Botón para exportar los datos -->
+                    <Button
+                        android:id="@+id/btnExportar"
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp"
+                        android:text="Exportar Datos a JSON"
+                        android:backgroundTint="#4CAF50"
+                        android:layout_marginBottom="16dp"
+                        app:cornerRadius="12dp"/>
+
+                    <!-- Botón para restaurar datos desde archivo -->
+                    <Button
+                        android:id="@+id/btnImportar"
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp"
+                        android:text="Importar (Restaurar)"
+                        android:backgroundTint="#FF9800"
+                        app:cornerRadius="12dp"/>
+
+                    <!-- Nota informativa -->
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Nota: Importar borrará los datos actuales y cargará los del archivo."
+                        android:textSize="12sp"
+                        android:textColor="@color/texto_secundario"
+                        android:gravity="center"
+                        android:layout_marginTop="8dp"/>
+                </LinearLayout>
+            </ScrollView>
+        </LinearLayout>
+
+        <!-- Botón flotante para activar edición de perfil -->
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fabEditarPerfil"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_margin="16dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:src="@drawable/ic_edit"
+            app:tint="@color/white"
+            app:backgroundTint="@color/purple_500" />
+    </RelativeLayout>
+
+    <!-- Menú lateral (Navigation Drawer) -->
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/nav_view"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:fitsSystemWindows="true"
+        app:headerLayout="@layout/nav_header"
+        app:menu="@menu/menu_lateral" />
+</androidx.drawerlayout.widget.DrawerLayout>

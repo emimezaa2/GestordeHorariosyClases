@@ -1,0 +1,286 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Layout: activity_registro_clases.xml
+    Descripción:
+    Pantalla para registrar una nueva clase dentro del sistema.
+    Permite ingresar datos como nombre de la asignatura, profesor, salón,
+    días de la semana, horarios y color identificativo de la materia.
+    Incluye un menú lateral para navegación general dentro de la aplicación.
+-->
+
+<androidx.drawerlayout.widget.DrawerLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawer_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".RegistroClasesActivity">
+
+    <!-- Contenedor principal -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@color/fondo_pantalla">
+
+        <!-- Barra superior con menú -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/btnMenu"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:src="@android:drawable/ic_menu_sort_by_size"
+                app:tint="@color/icono_menu"
+                android:contentDescription="Menu" />
+        </LinearLayout>
+
+        <!-- Contenido desplazable -->
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingHorizontal="24dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingBottom="40dp">
+
+                <!-- Título -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Registro de Clase"
+                    android:textSize="26sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/texto_principal"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="30dp"/>
+
+                <!-- Campo: Nombre de la Asignatura -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Nombre de la Asignatura"
+                    android:textStyle="bold"
+                    android:textColor="@color/texto_principal"/>
+                <EditText
+                    android:id="@+id/etNombreClase"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Ej. Matemáticas Discretas"
+                    android:textColor="@color/texto_principal"
+                    android:textColorHint="@color/texto_secundario"
+                    android:layout_marginBottom="16dp"/>
+
+                <!-- Campo: Profesor -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Profesor"
+                    android:textStyle="bold"
+                    android:textColor="@color/texto_principal"/>
+                <EditText
+                    android:id="@+id/etProfesor"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Ej. Ing. Juan Pérez"
+                    android:textColor="@color/texto_principal"
+                    android:textColorHint="@color/texto_secundario"
+                    android:layout_marginBottom="16dp"/>
+
+                <!-- Campo: Salón -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Salón / Ubicación"
+                    android:textStyle="bold"
+                    android:textColor="@color/texto_principal"/>
+                <EditText
+                    android:id="@+id/etSalon"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Ej. Lab 3 / Edificio K"
+                    android:textColor="@color/texto_principal"
+                    android:textColorHint="@color/texto_secundario"
+                    android:layout_marginBottom="16dp"/>
+
+                <!-- Selección: Días de la semana -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Días de la semana"
+                    android:textStyle="bold"
+                    android:textColor="@color/texto_principal"
+                    android:layout_marginBottom="8dp"/>
+
+                <!-- CheckBoxes de días -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginBottom="16dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <CheckBox android:id="@+id/cbLun" android:layout_width="0dp" android:layout_weight="1"
+                            android:layout_height="wrap_content" android:text="Lun"
+                            android:textColor="@color/texto_principal" android:buttonTint="@color/purple_500"/>
+
+                        <CheckBox android:id="@+id/cbMar" android:layout_width="0dp" android:layout_weight="1"
+                            android:layout_height="wrap_content" android:text="Mar"
+                            android:textColor="@color/texto_principal" android:buttonTint="@color/purple_500"/>
+
+                        <CheckBox android:id="@+id/cbMie" android:layout_width="0dp" android:layout_weight="1"
+                            android:layout_height="wrap_content" android:text="Mié"
+                            android:textColor="@color/texto_principal" android:buttonTint="@color/purple_500"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <CheckBox android:id="@+id/cbJue" android:layout_width="0dp" android:layout_weight="1"
+                            android:layout_height="wrap_content" android:text="Jue"
+                            android:textColor="@color/texto_principal" android:buttonTint="@color/purple_500"/>
+
+                        <CheckBox android:id="@+id/cbVie" android:layout_width="0dp" android:layout_weight="1"
+                            android:layout_height="wrap_content" android:text="Vie"
+                            android:textColor="@color/texto_principal" android:buttonTint="@color/purple_500"/>
+
+                        <CheckBox android:id="@+id/cbSab" android:layout_width="0dp" android:layout_weight="1"
+                            android:layout_height="wrap_content" android:text="Sáb"
+                            android:textColor="@color/texto_principal" android:buttonTint="@color/purple_500"/>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!-- Campos de hora -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="24dp">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_marginEnd="8dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Hora Inicio"
+                            android:textStyle="bold"
+                            android:textColor="@color/texto_principal"/>
+                        <EditText
+                            android:id="@+id/etHoraInicio"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="07:00"
+                            android:textColor="@color/texto_principal"
+                            android:textColorHint="@color/texto_secundario"
+                            android:focusable="false"
+                            android:clickable="true"
+                            android:inputType="none"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_marginStart="8dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Hora Fin"
+                            android:textStyle="bold"
+                            android:textColor="@color/texto_principal"/>
+                        <EditText
+                            android:id="@+id/etHoraFin"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="09:00"
+                            android:textColor="@color/texto_principal"
+                            android:textColorHint="@color/texto_secundario"
+                            android:focusable="false"
+                            android:clickable="true"
+                            android:inputType="none"/>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!-- Selección de color de clase -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Color de la Materia"
+                    android:textStyle="bold"
+                    android:textColor="@color/texto_principal"
+                    android:layout_marginBottom="8dp"/>
+
+                <RadioGroup
+                    android:id="@+id/rgColorClase"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center"
+                    android:layout_marginBottom="24dp">
+
+                    <RadioButton android:id="@+id/rbAzul" android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" android:text="Azul"
+                        android:buttonTint="#2196F3" android:textColor="#2196F3"
+                        android:layout_marginEnd="16dp"/>
+
+                    <RadioButton android:id="@+id/rbRosa" android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" android:text="Rosa"
+                        android:buttonTint="#E91E63" android:textColor="#E91E63"
+                        android:layout_marginEnd="16dp"/>
+
+                    <RadioButton android:id="@+id/rbNaranja" android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" android:text="Naranja"
+                        android:buttonTint="#FF9800" android:textColor="#FF9800"
+                        android:layout_marginEnd="16dp"/>
+
+                    <RadioButton android:id="@+id/rbVerde" android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" android:text="Verde"
+                        android:buttonTint="#4CAF50" android:textColor="#4CAF50"/>
+                </RadioGroup>
+
+                <!-- Botón para guardar clase -->
+                <Button
+                    android:id="@+id/btnGuardar"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:text="Guardar Clase"
+                    android:backgroundTint="@color/purple_500"
+                    android:textColor="#FFFFFF"
+                    android:textStyle="bold"
+                    app:cornerRadius="30dp"/>
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
+
+    <!-- Menú lateral -->
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/nav_view"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:fitsSystemWindows="true"
+        app:headerLayout="@layout/nav_header"
+        app:menu="@menu/menu_lateral" />
+</androidx.drawerlayout.widget.DrawerLayout>

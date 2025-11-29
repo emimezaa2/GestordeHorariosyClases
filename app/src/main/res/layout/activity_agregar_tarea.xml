@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Layout: activity_agregar_tarea.xml
+    Descripción:
+    Pantalla que permite al usuario agregar o editar una tarea o examen.
+    Incluye campos para nombre, tipo, materia, fecha y prioridad.
+    También incorpora un menú lateral (Navigation Drawer) para navegar
+    entre las distintas secciones de la app.
+-->
+
+<androidx.drawerlayout.widget.DrawerLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawer_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AgregarTareaActivity">
+
+    <!-- Contenedor principal de la pantalla -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@color/fondo_pantalla">
+
+        <!-- Encabezado superior con el botón de menú y título -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            android:gravity="center_vertical">
+
+            <!-- Botón para abrir el menú lateral -->
+            <ImageButton
+                android:id="@+id/btnMenu"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:src="@android:drawable/ic_menu_sort_by_size"
+                app:tint="@color/icono_menu" />
+
+            <!-- Título de la pantalla -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Nueva Actividad"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                android:textColor="@color/texto_principal"
+                android:gravity="center"
+                android:layout_marginEnd="32dp"/>
+        </LinearLayout>
+
+        <!-- Contenido desplazable -->
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="24dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <!-- Campo: Nombre de la tarea -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="¿Qué tienes que hacer?"
+                    android:textStyle="bold"
+                    android:textColor="@color/texto_principal"
+                    android:layout_marginBottom="8dp"/>
+
+                <EditText
+                    android:id="@+id/etNombreTarea"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:background="@drawable/bg_borde_suave"
+                    android:paddingHorizontal="16dp"
+                    android:hint="Ej. Estudiar Integrales"
+                    android:textColor="@color/texto_principal"
+                    android:textColorHint="@color/texto_secundario"
+                    android:layout_marginBottom="20dp"/>
+
+                <!-- Campo: Tipo de actividad (Tarea o Examen) -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Tipo de Actividad"
+                    android:textStyle="bold"
+                    android:textColor="@color/texto_principal"
+                    android:layout_marginBottom="8dp"/>
+
+                <RadioGroup
+                    android:id="@+id/rgTipo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="20dp">
+
+                    <RadioButton
+                        android:id="@+id/rbTarea"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:text="Tarea"
+                        android:textColor="@color/texto_principal"
+                        android:checked="true"/>
+
+                    <RadioButton
+                        android:id="@+id/rbExamen"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:text="Examen"
+                        android:textColor="@color/texto_principal"/>
+                </RadioGroup>
+
+                <!-- Campo: Selección de clase/materia -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Materia"
+                    android:textStyle="bold"
+                    android:textColor="@color/texto_principal"
+                    android:layout_marginBottom="8dp"/>
+
+                <Spinner
+                    android:id="@+id/spinnerClases"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:background="@drawable/bg_borde_suave"
+                    android:layout_marginBottom="20dp"/>
+
+                <!-- Campo: Fecha de entrega -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Fecha de entrega"
+                    android:textStyle="bold"
+                    android:textColor="@color/texto_principal"
+                    android:layout_marginBottom="8dp"/>
+
+                <EditText
+                    android:id="@+id/etFechaTarea"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:background="@drawable/bg_borde_suave"
+                    android:paddingHorizontal="16dp"
+                    android:hint="Seleccionar Fecha"
+                    android:focusable="false"
+                    android:clickable="true"
+                    android:inputType="none"
+                    android:textColor="@color/texto_principal"
+                    android:textColorHint="@color/texto_secundario"
+                    android:drawableEnd="@android:drawable/ic_menu_my_calendar"
+                    android:layout_marginBottom="20dp"/>
+
+                <!-- Campo: Nivel de prioridad -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Prioridad"
+                    android:textStyle="bold"
+                    android:textColor="@color/texto_principal"
+                    android:layout_marginBottom="8dp"/>
+
+                <RadioGroup
+                    android:id="@+id/rgPrioridad"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center">
+
+                    <RadioButton
+                        android:id="@+id/rbBaja"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Baja"
+                        android:buttonTint="#4CAF50"
+                        android:textColor="#4CAF50"
+                        android:layout_marginEnd="16dp"
+                        android:checked="true"/>
+
+                    <RadioButton
+                        android:id="@+id/rbMedia"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Media"
+                        android:buttonTint="#FFC107"
+                        android:textColor="#FFA000"
+                        android:layout_marginEnd="16dp"/>
+
+                    <RadioButton
+                        android:id="@+id/rbAlta"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Alta"
+                        android:buttonTint="#F44336"
+                        android:textColor="#D32F2F"/>
+                </RadioGroup>
+
+                <!-- Botón para guardar la tarea -->
+                <Button
+                    android:id="@+id/btnGuardarTarea"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:text="Agendar Actividad"
+                    android:backgroundTint="@color/purple_500"
+                    android:layout_marginTop="30dp"
+                    app:cornerRadius="30dp"/>
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
+
+    <!-- Menú lateral (Navigation Drawer) -->
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/nav_view"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:fitsSystemWindows="true"
+        app:headerLayout="@layout/nav_header"
+        app:menu="@menu/menu_lateral" />
+
+</androidx.drawerlayout.widget.DrawerLayout>

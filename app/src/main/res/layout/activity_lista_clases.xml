@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Layout: activity_lista_clases.xml
+    Descripción:
+    Pantalla que muestra el horario semanal del usuario con la lista de clases registradas.
+    Utiliza un RecyclerView para desplegar todas las clases almacenadas en la base de datos.
+    Incluye un menú lateral (Navigation Drawer) para acceder a otras secciones de la aplicación.
+-->
+
+<androidx.drawerlayout.widget.DrawerLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawer_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ListaClasesActivity">
+
+    <!-- Contenedor principal -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@color/fondo_pantalla">
+
+        <!-- Barra superior con menú y título -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <!-- Botón para abrir el menú lateral -->
+            <ImageButton
+                android:id="@+id/btnMenu"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:src="@android:drawable/ic_menu_sort_by_size"
+                app:tint="@color/icono_menu"
+                android:contentDescription="Menu" />
+
+            <!-- Título centrado -->
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Mi Horario Semanal"
+                android:textColor="@color/texto_principal"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:gravity="center"/>
+
+            <!-- Espaciador visual para balancear el layout -->
+            <View
+                android:layout_width="32dp"
+                android:layout_height="32dp"/>
+        </LinearLayout>
+
+        <!-- Lista de clases (RecyclerView) -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvListaClases"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingHorizontal="16dp"
+            android:clipToPadding="false"/>
+    </LinearLayout>
+
+    <!-- Menú lateral (Navigation Drawer) -->
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/nav_view"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:fitsSystemWindows="true"
+        app:headerLayout="@layout/nav_header"
+        app:menu="@menu/menu_lateral" />
+
+</androidx.drawerlayout.widget.DrawerLayout>

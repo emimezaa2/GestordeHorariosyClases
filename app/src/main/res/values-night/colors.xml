@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="fondo_pantalla">#121212</color>
+    <color name="fondo_tarjeta">#1E1E1E</color>
+    <color name="texto_principal">#E0E0E0</color>
+    <color name="texto_secundario">#AAAAAA</color>
+    <color name="icono_menu">#FFFFFF</color>
+    <color name="fondo_campo">#2D2D2D</color> ```
+    <color name="purple_500">#BB86FC</color>
+</resources>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Layout: nav_header.xml
+    Descripción:
+    Cabecera (header) del menú lateral de navegación.
+    Muestra el ícono del usuario o app, el nombre del sistema
+    y un subtítulo con el rol o tipo de usuario actual.
+-->
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="176dp"
+    android:background="#1F1D2B"
+    android:gravity="bottom"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:theme="@style/ThemeOverlay.AppCompat.Dark">
+
+    <!-- Imagen de perfil o logo del sistema -->
+    <ImageView
+        android:id="@+id/navHeaderImage"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:src="@mipmap/ic_launcher_round"
+        android:layout_marginBottom="10dp"
+        android:scaleType="centerCrop" />
+
+    <!-- Nombre principal del usuario o aplicación -->
+    <TextView
+        android:id="@+id/navHeaderName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Gestor Académico"
+        android:textColor="#FFFFFF"
+        android:textStyle="bold"
+        android:textSize="20sp" />
+
+    <!-- Subtítulo o descripción breve -->
+    <TextView
+        android:id="@+id/navHeaderSubtitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Estudiante"
+        android:textColor="#AAAAAA"
+        android:textSize="14sp" />
+</LinearLayout>
