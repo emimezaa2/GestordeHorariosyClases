@@ -7,29 +7,23 @@ import android.database.sqlite.SQLiteOpenHelper
 import android.icu.util.Calendar
 
 /**
- * Clase que administra la base de datos local del gestor de horarios y tareas.
- * Contiene la definición de las tablas, operaciones CRUD y reportes estadísticos.
- *
- * @param context Contexto de la aplicación (requerido por SQLiteOpenHelper)
+ * Clase encargada de manejar la base de datos del gestor de horarios y tareas.
+ * Aquí se crean las tablas, se guardan los datos y se hacen las consultas.
+ * También incluye funciones para obtener estadísticas simples.
  */
 class BaseDeDatosHelper(context: Context) : SQLiteOpenHelper(context, "Horario.db", null, 1) {
 
     // -------------------------------------------------------
-    // ------------------ CONFIGURACIÓN INICIAL ----------------
+    // ------------------ CONFIGURACION INICIAL --------------
     // -------------------------------------------------------
 
-    /**
-     * Habilita el soporte de claves foráneas para mantener integridad referencial.
-     */
+    // Se activa el soporte de llaves foráneas para que al eliminar una clase, también se borren sus tareas
     override fun onConfigure(db: SQLiteDatabase) {
         super.onConfigure(db)
         db.setForeignKeyConstraintsEnabled(true)
     }
 
-    /**
-     * Se ejecuta al crear por primera vez la base de datos.
-     * Define las tablas: `clases` y `tareas`.
-     */
+    // Se crean las tablas de clases y tareas cuando se instala la app por primera vez
     override fun onCreate(db: SQLiteDatabase?) {
         val crearTablaClases = """
             CREATE TABLE clases (
@@ -39,7 +33,8 @@ class BaseDeDatosHelper(context: Context) : SQLiteOpenHelper(context, "Horario.d
                 salon TEXT,
                 dias TEXT,
                 hora_inicio TEXT,
-                hora_fin TEXT
+                hora_fin TEXT,
+                color TEXT
             )
         """
         db?.execSQL(crearTablaClases)
@@ -59,10 +54,7 @@ class BaseDeDatosHelper(context: Context) : SQLiteOpenHelper(context, "Horario.d
         db?.execSQL(crearTablaTareas)
     }
 
-    /**
-     * Se ejecuta cuando se actualiza la versión de la base de datos.
-     * Borra las tablas existentes y las vuelve a crear.
-     */
+    // Si se actualiza la versión de la base de datos, se eliminan las tablas viejas y se crean nuevas
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
         db?.execSQL("DROP TABLE IF EXISTS clases")
         db?.execSQL("DROP TABLE IF EXISTS tareas")
@@ -74,8 +66,8 @@ class BaseDeDatosHelper(context: Context) : SQLiteOpenHelper(context, "Horario.d
     // -------------------------------------------------------
 
     /**
-     * Inserta una nueva clase en la tabla `clases`.
-     * @return true si la inserción fue exitosa, false en caso contrario.
+     * Inserta una nueva clase en la base de datos.
+     * Devuelve true si se guardó correctamente.
      */
     fun insertarClase(clase: ClaseModelo): Boolean {
         val db = writableDatabase
@@ -86,6 +78,7 @@ class BaseDeDatosHelper(context: Context) : SQLiteOpenHelper(context, "Horario.d
             put("dias", clase.dias)
             put("hora_inicio", clase.horaInicio)
             put("hora_fin", clase.horaFin)
+            put("color", clase.color)
         }
         val resultado = db.insert("clases", null, valores)
         db.close()
@@ -93,8 +86,7 @@ class BaseDeDatosHelper(context: Context) : SQLiteOpenHelper(context, "Horario.d
     }
 
     /**
-     * Obtiene todas las clases registradas en la base de datos.
-     * @return Lista de objetos ClaseModelo.
+     * Devuelve todas las clases guardadas.
      */
     fun obtenerTodasLasClases(): ArrayList<ClaseModelo> {
         val lista = ArrayList<ClaseModelo>()
@@ -110,7 +102,8 @@ class BaseDeDatosHelper(context: Context) : SQLiteOpenHelper(context, "Horario.d
                     salon = cursor.getString(3),
                     dias = cursor.getString(4),
                     horaInicio = cursor.getString(5),
-                    horaFin = cursor.getString(6)
+                    horaFin = cursor.getString(6),
+                    color = cursor.getString(7)
                 )
                 lista.add(clase)
             } while (cursor.moveToNext())
@@ -122,7 +115,7 @@ class BaseDeDatosHelper(context: Context) : SQLiteOpenHelper(context, "Horario.d
     }
 
     /**
-     * Obtiene una clase específica por su ID.
+     * Devuelve una clase específica según su id.
      */
     fun obtenerClase(id: Int): ClaseModelo? {
         val db = readableDatabase
@@ -137,7 +130,8 @@ class BaseDeDatosHelper(context: Context) : SQLiteOpenHelper(context, "Horario.d
                 salon = cursor.getString(3),
                 dias = cursor.getString(4),
                 horaInicio = cursor.getString(5),
-                horaFin = cursor.getString(6)
+                horaFin = cursor.getString(6),
+                color = cursor.getString(7)
             )
         }
 
@@ -147,7 +141,7 @@ class BaseDeDatosHelper(context: Context) : SQLiteOpenHelper(context, "Horario.d
     }
 
     /**
-     * Actualiza los datos de una clase existente.
+     * Actualiza los datos de una clase ya guardada.
      */
     fun actualizarClase(clase: ClaseModelo): Boolean {
         val db = writableDatabase
@@ -158,6 +152,7 @@ class BaseDeDatosHelper(context: Context) : SQLiteOpenHelper(context, "Horario.d
             put("dias", clase.dias)
             put("hora_inicio", clase.horaInicio)
             put("hora_fin", clase.horaFin)
+            put("color", clase.color)
         }
         val filas = db.update("clases", valores, "id=?", arrayOf(clase.id.toString()))
         db.close()
@@ -165,7 +160,8 @@ class BaseDeDatosHelper(context: Context) : SQLiteOpenHelper(context, "Horario.d
     }
 
     /**
-     * Elimina una clase y sus tareas asociadas.
+     * Elimina una clase de la base de datos.
+     * Si la clase tiene tareas, también se eliminan por la relación foránea.
      */
     fun eliminarClase(id: Int): Boolean {
         val db = writableDatabase
@@ -179,7 +175,7 @@ class BaseDeDatosHelper(context: Context) : SQLiteOpenHelper(context, "Horario.d
     // -------------------------------------------------------
 
     /**
-     * Inserta una nueva tarea en la tabla `tareas`.
+     * Inserta una nueva tarea.
      */
     fun insertarTarea(tarea: TareaModelo): Boolean {
         val db = writableDatabase
@@ -197,7 +193,7 @@ class BaseDeDatosHelper(context: Context) : SQLiteOpenHelper(context, "Horario.d
     }
 
     /**
-     * Devuelve una lista con todas las tareas y su clase correspondiente.
+     * Devuelve todas las tareas junto con el nombre de la clase a la que pertenecen.
      */
     fun obtenerTodasLasTareas(): ArrayList<TareaModelo> {
         val lista = ArrayList<TareaModelo>()
@@ -232,7 +228,7 @@ class BaseDeDatosHelper(context: Context) : SQLiteOpenHelper(context, "Horario.d
     }
 
     /**
-     * Obtiene una tarea específica según su ID.
+     * Obtiene una tarea especifica por su id.
      */
     fun obtenerTarea(id: Int): TareaModelo? {
         val db = readableDatabase
@@ -257,7 +253,7 @@ class BaseDeDatosHelper(context: Context) : SQLiteOpenHelper(context, "Horario.d
     }
 
     /**
-     * Actualiza los datos principales de una tarea (nombre, fecha, tipo, prioridad).
+     * Actualiza la informacion de una tarea.
      */
     fun actualizarTarea(tarea: TareaModelo): Boolean {
         val db = writableDatabase
@@ -274,7 +270,7 @@ class BaseDeDatosHelper(context: Context) : SQLiteOpenHelper(context, "Horario.d
     }
 
     /**
-     * Elimina una tarea por su ID.
+     * Elimina una tarea de la base de datos.
      */
     fun eliminarTarea(id: Int): Boolean {
         val db = writableDatabase
@@ -284,7 +280,7 @@ class BaseDeDatosHelper(context: Context) : SQLiteOpenHelper(context, "Horario.d
     }
 
     /**
-     * Cambia el estado de completada/pending de una tarea.
+     * Cambia el estado de una tarea (completada o no completada).
      */
     fun actualizarEstadoTarea(id: Int, completada: Boolean): Boolean {
         val db = writableDatabase
@@ -300,17 +296,17 @@ class BaseDeDatosHelper(context: Context) : SQLiteOpenHelper(context, "Horario.d
     // ------------------ REPORTES Y DASHBOARD ----------------
     // -------------------------------------------------------
 
-    /** Devuelve el número total de clases registradas. */
+    /** Cuenta cuantas clases hay registradas. */
     fun contarClases(): Int = ejecutarConteo("SELECT COUNT(*) FROM clases")
 
-    /** Devuelve el número de tareas pendientes. */
+    /** Cuenta cuantas tareas estan pendientes. */
     fun contarTareasPendientes(): Int = ejecutarConteo("SELECT COUNT(*) FROM tareas WHERE completada = 0")
 
-    /** Devuelve el número de tareas completadas. */
+    /** Cuenta cuantas tareas ya estan marcadas como completadas. */
     fun contarTareasCompletadas(): Int = ejecutarConteo("SELECT COUNT(*) FROM tareas WHERE completada = 1")
 
     /**
-     * Devuelve la próxima tarea pendiente ordenada por fecha.
+     * Devuelve el nombre y fecha de la tarea mas cercana a vencer.
      */
     fun obtenerProximaTarea(): String {
         val db = readableDatabase
@@ -328,8 +324,7 @@ class BaseDeDatosHelper(context: Context) : SQLiteOpenHelper(context, "Horario.d
     }
 
     /**
-     * Calcula el total de horas semanales con base en las clases registradas.
-     * Retorna un formato legible (por ejemplo: "8h 30m").
+     * Calcula las horas totales de clase a la semana segun los horarios registrados.
      */
     fun calcularHorasSemanales(): String {
         var totalMinutos = 0
@@ -367,7 +362,7 @@ class BaseDeDatosHelper(context: Context) : SQLiteOpenHelper(context, "Horario.d
     }
 
     /**
-     * Devuelve una lista con el número de tareas pendientes por clase.
+     * Devuelve una lista con el nombre de cada clase y cuantas tareas pendientes tiene.
      */
     fun obtenerDesgloseTareas(): ArrayList<String> {
         val lista = ArrayList<String>()
@@ -392,7 +387,7 @@ class BaseDeDatosHelper(context: Context) : SQLiteOpenHelper(context, "Horario.d
     }
 
     /**
-     * Devuelve cuántas clases hay el día actual.
+     * Cuenta cuantas clases hay hoy segun el dia actual del calendario.
      */
     fun contarClasesHoy(): Int {
         val calendario = Calendar.getInstance()
@@ -400,17 +395,17 @@ class BaseDeDatosHelper(context: Context) : SQLiteOpenHelper(context, "Horario.d
         val hoy = when (diaSemana) {
             Calendar.MONDAY -> "Lun"
             Calendar.TUESDAY -> "Mar"
-            Calendar.WEDNESDAY -> "Mié"
+            Calendar.WEDNESDAY -> "Mie"
             Calendar.THURSDAY -> "Jue"
             Calendar.FRIDAY -> "Vie"
-            Calendar.SATURDAY -> "Sáb"
+            Calendar.SATURDAY -> "Sab"
             else -> "Dom"
         }
         return ejecutarConteo("SELECT COUNT(*) FROM clases WHERE dias LIKE '%$hoy%'")
     }
 
     /**
-     * Obtiene las tareas pendientes ordenadas por fecha, con nombre de clase incluido.
+     * Devuelve una lista con todas las tareas pendientes ordenadas por fecha.
      */
     fun obtenerTareasPendientesDetalladas(): ArrayList<TareaModelo> {
         val lista = ArrayList<TareaModelo>()
@@ -451,7 +446,7 @@ class BaseDeDatosHelper(context: Context) : SQLiteOpenHelper(context, "Horario.d
     // -------------------------------------------------------
 
     /**
-     * Ejecuta una consulta COUNT(*) y devuelve el resultado.
+     * Ejecuta una consulta de conteo y devuelve el resultado.
      */
     private fun ejecutarConteo(query: String): Int {
         val db = readableDatabase

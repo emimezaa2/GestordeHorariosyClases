@@ -8,5 +8,5 @@ data class ClaseModelo(
     var dias: String = "",
     var horaInicio: String = "",
     var horaFin: String = "",
-    var color: String = "#6200EE" // color morado
+    var color: String = "#6200EE" // morado
 )

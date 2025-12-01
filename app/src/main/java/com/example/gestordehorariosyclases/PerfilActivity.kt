@@ -27,9 +27,9 @@ import java.io.FileWriter
 
 class PerfilActivity : AppCompatActivity() {
 
-    // -------------------------------------------------------
-    // ------------------ VARIABLES GLOBALES ------------------
-    // -------------------------------------------------------
+
+    //  VARIABLES
+
     private lateinit var drawerLayout: DrawerLayout
     private lateinit var navView: NavigationView
     private lateinit var btnMenu: ImageButton
@@ -48,9 +48,7 @@ class PerfilActivity : AppCompatActivity() {
     private lateinit var prefs: SharedPreferences
     private var isEditing = false
 
-    // -------------------------------------------------------
-    // ----------- SELECTOR DE IMAGEN DE PERFIL ---------------
-    // -------------------------------------------------------
+
     /**
      * Permite seleccionar una imagen de la galería para usarla como foto de perfil.
      * Guarda la URI de la imagen en SharedPreferences para uso futuro.
@@ -72,15 +70,13 @@ class PerfilActivity : AppCompatActivity() {
             }
         }
 
-    // -------------------------------------------------------
-    // -------------------- MÉTODO ONCREATE -------------------
-    // -------------------------------------------------------
+
     /**
-     * Inicializa la pantalla de perfil:
-     * - Carga los datos del usuario (nombre, carrera, foto).
-     * - Configura el modo oscuro.
-     * - Permite exportar/importar datos en formato JSON.
-     * - Activa la navegación lateral.
+     * Inicializa la pantalla de perfil
+     * Carga los datos del usuario
+     * Configura el modo oscuro
+     * Permite exportar/importar datos en formato JSON
+     * Activa la navegación latera
      */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -131,11 +127,9 @@ class PerfilActivity : AppCompatActivity() {
         configurarMenu()
     }
 
-    // -------------------------------------------------------
-    // ------------------ PERFIL DE USUARIO -------------------
-    // -------------------------------------------------------
+
     /**
-     * Carga los datos del perfil almacenados en SharedPreferences
+     * Carga los datos del perfil almacenados
      * y muestra el nombre, carrera y foto de perfil.
      */
     private fun cargarPerfil() {
@@ -158,7 +152,7 @@ class PerfilActivity : AppCompatActivity() {
     }
 
     /**
-     * Guarda los datos modificados del perfil en SharedPreferences.
+     * Guarda los datos modificados del perfil
      */
     private fun guardarPerfil() {
         val nombre = etNombrePerfil.text.toString()
@@ -214,12 +208,10 @@ class PerfilActivity : AppCompatActivity() {
         }
     }
 
-    // -------------------------------------------------------
-    // ----------------- EXPORTAR E IMPORTAR -----------------
-    // -------------------------------------------------------
+
     /**
-     * Exporta las clases y tareas del usuario a un archivo JSON local.
-     * Sirve como respaldo del sistema.
+     * Exporta las clases y tareas del usuario a un archivo JSON local
+     *
      */
     private fun exportarDatosJSON() {
         try {
@@ -270,7 +262,7 @@ class PerfilActivity : AppCompatActivity() {
 
     /**
      * Importa los datos de un archivo JSON local
-     * y los inserta nuevamente en la base de datos.
+     * y los inserta nuevamente en la base de datos
      */
     private fun importarDatosJSON() {
         val archivo = File(filesDir, "backup_horario.json")
@@ -308,9 +300,7 @@ class PerfilActivity : AppCompatActivity() {
         }
     }
 
-    // -------------------------------------------------------
-    // ------------------ CONFIGURAR MENÚ ---------------------
-    // -------------------------------------------------------
+
     /**
      * Configura el menú lateral (Navigation Drawer)
      * y define las rutas de navegación entre las diferentes pantallas.

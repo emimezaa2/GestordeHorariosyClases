@@ -15,9 +15,9 @@ import java.util.Calendar
 
 class RegistroClasesActivity : AppCompatActivity() {
 
-    // -------------------------------------------------------
-    // ------------------ VARIABLES GLOBALES ------------------
-    // -------------------------------------------------------
+
+    // VARIABLES
+
     private lateinit var drawerLayout: DrawerLayout
     private lateinit var navView: NavigationView
     private lateinit var btnMenu: ImageButton
@@ -47,9 +47,9 @@ class RegistroClasesActivity : AppCompatActivity() {
 
     private var idClaseEditar: Int? = null // Si existe, estamos editando una clase existente
 
-    // -------------------------------------------------------
-    // -------------------- MÉTODO ONCREATE -------------------
-    // -------------------------------------------------------
+
+    //  MÉTODO ONCREATE
+
     /**
      * Inicializa la vista para registrar o editar una clase:
      * - Configura los elementos visuales.
@@ -102,9 +102,8 @@ class RegistroClasesActivity : AppCompatActivity() {
         btnGuardar.setOnClickListener { guardarClase() }
     }
 
-    // -------------------------------------------------------
-    // ------------------ MÉTODO ONRESUME ---------------------
-    // -------------------------------------------------------
+    //  MÉTODO ONRESUME
+
     /**
      * Se ejecuta cada vez que regresamos a esta pantalla.
      * Actualiza el encabezado del menú lateral con el nombre y foto del usuario.
@@ -114,9 +113,9 @@ class RegistroClasesActivity : AppCompatActivity() {
         actualizarNavHeader()
     }
 
-    // -------------------------------------------------------
-    // ----------------- ACTUALIZAR SIDEBAR -------------------
-    // -------------------------------------------------------
+
+    //  ACTUALIZAR SIDEBAR
+
     /**
      * Carga los datos del usuario en el menú lateral (nombre, carrera y foto).
      */
@@ -144,9 +143,9 @@ class RegistroClasesActivity : AppCompatActivity() {
         }
     }
 
-    // -------------------------------------------------------
-    // ------------------ MOSTRAR RELOJ -----------------------
-    // -------------------------------------------------------
+
+    //  MOSTRAR RELOJ
+
     /**
      * Abre un diálogo para seleccionar una hora y la asigna al EditText indicado.
      */
@@ -162,9 +161,9 @@ class RegistroClasesActivity : AppCompatActivity() {
         timePicker.show()
     }
 
-    // -------------------------------------------------------
-    // ---------------- OBTENER DÍAS SELECCIONADOS ------------
-    // -------------------------------------------------------
+
+    //  OBTENER DÍAS SELECCIONADOS
+
     /**
      * Devuelve una cadena con los días seleccionados en formato "Lun, Mar, Mié..."
      */
@@ -191,11 +190,11 @@ class RegistroClasesActivity : AppCompatActivity() {
         cbSab.isChecked = diasString.contains("Sáb")
     }
 
-    // -------------------------------------------------------
-    // ---------------- CARGAR DATOS PARA EDITAR --------------
-    // -------------------------------------------------------
+
+    //  CARGAR DATOS PARA EDITAR
+
     /**
-     * Si se edita una clase existente, carga sus datos en los campos del formulario.
+     * Si se edita una clase existente, carga sus datos en los campos del formulario
      */
     private fun cargarDatosParaEditar(id: Int) {
         val clase = dbHelper.obtenerClase(id)
@@ -219,9 +218,9 @@ class RegistroClasesActivity : AppCompatActivity() {
         }
     }
 
-    // -------------------------------------------------------
-    // -------------------- GUARDAR CLASE ---------------------
-    // -------------------------------------------------------
+    //
+    //  GUARDAR CLASE
+
     /**
      * Valida los datos ingresados y guarda la clase en la base de datos.
      * Si ya existe, actualiza los datos.
@@ -277,9 +276,7 @@ class RegistroClasesActivity : AppCompatActivity() {
         if (!exito) Toast.makeText(this, "Error al guardar", Toast.LENGTH_SHORT).show()
     }
 
-    // -------------------------------------------------------
-    // -------------------- LIMPIAR CAMPOS --------------------
-    // -------------------------------------------------------
+
     /**
      * Limpia los campos del formulario después de guardar una clase nueva.
      */
@@ -298,9 +295,7 @@ class RegistroClasesActivity : AppCompatActivity() {
         etNombre.requestFocus()
     }
 
-    // -------------------------------------------------------
-    // ------------------ CONFIGURAR MENÚ ---------------------
-    // -------------------------------------------------------
+
     /**
      * Configura el menú lateral (Navigation Drawer)
      * y permite navegar entre las diferentes pantallas del sistema.

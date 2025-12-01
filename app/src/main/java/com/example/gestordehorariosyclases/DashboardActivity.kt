@@ -44,9 +44,9 @@ class DashboardActivity : AppCompatActivity() {
         actualizarNavHeader() // Refrescar nombre y foto en el menú lateral
     }
 
-    // -------------------------------------------------------
-    // ---------- ACTUALIZAR CABECERA DEL SIDEBAR ------------
-    // -------------------------------------------------------
+
+    //  actualiza la barra lateral
+
     /**
      * Actualiza la información del encabezado del menú lateral.
      * Muestra el nombre del usuario, carrera y foto de perfil.
@@ -75,9 +75,7 @@ class DashboardActivity : AppCompatActivity() {
         }
     }
 
-    // -------------------------------------------------------
-    // ----------------- CARGAR DATOS EN PANTALLA ------------
-    // -------------------------------------------------------
+
     /**
      * Carga todos los datos del Dashboard:
      * - Horas semanales de clase.
@@ -179,9 +177,7 @@ class DashboardActivity : AppCompatActivity() {
         tvProgresoTexto.text = "$nombreDia\n$porcentaje%"
     }
 
-    // -------------------------------------------------------
-    // ----------------- CALCULAR PRÓXIMA CLASE --------------
-    // -------------------------------------------------------
+
     /**
      * Busca cuál es la próxima clase del día actual.
      * Si ya pasaron todas las clases, muestra "Clases terminadas".
@@ -218,9 +214,7 @@ class DashboardActivity : AppCompatActivity() {
         return "Clases terminadas por hoy"
     }
 
-    // -------------------------------------------------------
-    // ----------------- CONFIGURAR MENÚ LATERAL -------------
-    // -------------------------------------------------------
+
     /**
      * Configura las acciones del menú lateral (Navigation Drawer).
      * Permite moverse entre módulos del proyecto.

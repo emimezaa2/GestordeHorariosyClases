@@ -21,9 +21,9 @@ import com.google.android.material.navigation.NavigationView
 
 class ListaTareasActivity : AppCompatActivity() {
 
-    // -------------------------------------------------------
-    // ------------------ VARIABLES GLOBALES ------------------
-    // -------------------------------------------------------
+
+    //  VARIABLES
+
     private lateinit var drawerLayout: DrawerLayout
     private lateinit var navView: NavigationView
     private lateinit var btnMenu: ImageButton
@@ -34,9 +34,7 @@ class ListaTareasActivity : AppCompatActivity() {
     private lateinit var dbHelper: BaseDeDatosHelper
     private lateinit var prefs: SharedPreferences
 
-    // -------------------------------------------------------
-    // -------------------- MÉTODO ONCREATE -------------------
-    // -------------------------------------------------------
+
     /**
      * Inicializa la pantalla de lista de tareas:
      * - Configura el RecyclerView y el adaptador.
@@ -84,9 +82,7 @@ class ListaTareasActivity : AppCompatActivity() {
         actualizarNavHeader()
     }
 
-    // -------------------------------------------------------
-    // ------------------ MÉTODO ONRESUME ---------------------
-    // -------------------------------------------------------
+
     /**
      * Se ejecuta al volver a la actividad.
      * Refresca la lista de tareas y la cabecera del menú lateral.
@@ -99,14 +95,14 @@ class ListaTareasActivity : AppCompatActivity() {
         actualizarNavHeader()
     }
 
-    // -------------------------------------------------------
-    // ----------------- ACTUALIZAR SIDEBAR -------------------
-    // -------------------------------------------------------
+
+    //  actualiza la brra lateral
+
     /**
-     * Muestra en el menú lateral la información del usuario:
-     * - Nombre completo
-     * - Carrera o rol
-     * - Foto de perfil (si fue guardada)
+     * Muestra en el menú lateral la información del usuari
+     * Nombre completo
+     * Carrera o rol
+     * Foto de perfil
      */
     private fun actualizarNavHeader() {
         val navHeader = navView.getHeaderView(0)
@@ -132,9 +128,9 @@ class ListaTareasActivity : AppCompatActivity() {
         }
     }
 
-    // -------------------------------------------------------
-    // -------------------- CARGAR LISTA ----------------------
-    // -------------------------------------------------------
+
+
+
     /**
      * Obtiene todas las tareas desde la base de datos
      * y actualiza el adaptador. Muestra un mensaje si no hay tareas.
@@ -153,9 +149,7 @@ class ListaTareasActivity : AppCompatActivity() {
         }
     }
 
-    // -------------------------------------------------------
-    // ---------------- CONFIRMAR ELIMINACIÓN ----------------
-    // -------------------------------------------------------
+
     /**
      * Muestra un cuadro de confirmación antes de eliminar una tarea.
      * Si el usuario confirma, la tarea se borra y se actualiza la lista.
@@ -174,12 +168,10 @@ class ListaTareasActivity : AppCompatActivity() {
             .show()
     }
 
-    // -------------------------------------------------------
-    // ------------------ CONFIGURAR MENÚ ---------------------
-    // -------------------------------------------------------
+
     /**
-     * Configura las opciones del menú lateral (Navigation Drawer)
-     * para navegar entre las distintas pantallas del sistema.
+     * Configura las opciones del menú lateral
+     * para navegar entre pantallas
      */
     private fun configurarMenu() {
         drawerLayout = findViewById(R.id.drawer_layout)

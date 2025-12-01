@@ -1,96 +1,85 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--
-    Layout: item_clase.xml
-    Descripción:
-    Vista individual que representa una clase dentro del RecyclerView.
-    Muestra información como nombre de la asignatura, profesor, salón y horario.
-    Incluye una barra de color lateral y un botón para eliminar la clase.
--->
-
 <androidx.cardview.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_margin="8dp"
-    app:cardCornerRadius="12dp"
+    android:layout_height="160dp"
+    android:layout_margin="6dp"
+    app:cardCornerRadius="16dp"
     app:cardElevation="4dp"
     app:cardBackgroundColor="@color/fondo_tarjeta"
     android:clickable="true"
     android:focusable="true"
     android:foreground="?android:attr/selectableItemBackground">
 
-    <!-- Contenedor principal -->
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center_vertical">
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
 
-        <!-- Barra de color lateral para identificar la clase -->
         <View
             android:id="@+id/viewColorClase"
-            android:layout_width="6dp"
+            android:layout_width="8dp"
             android:layout_height="match_parent"
             android:background="#6200EE" />
 
-        <!-- Contenedor de información de la clase -->
         <LinearLayout
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1"
             android:orientation="vertical"
-            android:padding="16dp">
+            android:padding="12dp"
+            android:gravity="center_vertical">
 
-            <!-- Nombre de la materia -->
             <TextView
                 android:id="@+id/tvNombreClase"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Matemáticas"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                android:textColor="@color/texto_principal" />
-
-            <!-- Nombre del profesor -->
-            <TextView
-                android:id="@+id/tvProfesor"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Prof. Juan Pérez"
-                android:textSize="14sp"
-                android:textColor="@color/texto_secundario"
-                android:layout_marginTop="4dp" />
-
-            <!-- Contenedor de salón y horario -->
-            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginTop="8dp">
+                android:text="Matemáticas"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:maxLines="2"
+                android:ellipsize="end"
+                android:textColor="@color/texto_principal" />
 
-                <!-- Salón o ubicación -->
-                <TextView
-                    android:id="@+id/tvSalon"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Salón A-1"
-                    android:textStyle="italic"
-                    android:textColor="@color/texto_secundario"
-                    android:layout_marginEnd="16dp" />
+            <TextView
+                android:id="@+id/tvProfesor"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Prof. Juan Pérez"
+                android:textSize="12sp"
+                android:textColor="@color/texto_secundario"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:layout_marginTop="2dp" />
 
-                <!-- Horario de la clase -->
-                <TextView
-                    android:id="@+id/tvHorario"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Lun 08:00"
-                    android:textColor="#6200EE"
-                    android:textStyle="bold" />
-            </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"/>
+
+            <TextView
+                android:id="@+id/tvSalon"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Salón A-1"
+                android:textSize="12sp"
+                android:textStyle="italic"
+                android:textColor="@color/texto_secundario"
+                android:layout_marginBottom="2dp"/>
+
+            <TextView
+                android:id="@+id/tvHorario"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Lun 08:00 - 10:00"
+                android:textSize="12sp"
+                android:textColor="#6200EE"
+                android:textStyle="bold"
+                android:maxLines="2"
+                android:ellipsize="end"/>
         </LinearLayout>
 
-        <!-- Botón para eliminar la clase -->
         <ImageButton
             android:id="@+id/btnEliminar"
             android:layout_width="40dp"
@@ -98,7 +87,8 @@
             android:src="@android:drawable/ic_menu_delete"
             android:background="?attr/selectableItemBackgroundBorderless"
             app:tint="#F44336"
-            android:contentDescription="Eliminar clase"
-            android:padding="8dp" />
+            android:scaleType="centerInside"
+            android:contentDescription="Eliminar clase" />
+
     </LinearLayout>
 </androidx.cardview.widget.CardView>

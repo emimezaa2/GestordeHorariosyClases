@@ -19,9 +19,9 @@ import java.util.Calendar
  */
 class AgregarTareaActivity : AppCompatActivity() {
 
-    // -------------------------------------------------------
-    // -------------------- VARIABLES GLOBALES ----------------
-    // -------------------------------------------------------
+
+    //  VARIABLES
+
     private lateinit var etNombre: EditText
     private lateinit var etFecha: EditText
     private lateinit var spinnerClases: Spinner
@@ -40,9 +40,9 @@ class AgregarTareaActivity : AppCompatActivity() {
     private var listaClases = ArrayList<ClaseModelo>()
     private var idTareaEditar: Int? = null
 
-    // -------------------------------------------------------
-    // ---------------------- ON CREATE -----------------------
-    // -------------------------------------------------------
+
+
+
     /**
      * Inicializa la actividad y prepara los componentes:
      * - Carga vistas.
@@ -72,9 +72,7 @@ class AgregarTareaActivity : AppCompatActivity() {
         btnGuardar.setOnClickListener { guardarTarea() }
     }
 
-    // -------------------------------------------------------
-    // ---------------------- ON RESUME -----------------------
-    // -------------------------------------------------------
+
     /**
      * Se ejecuta al volver a esta pantalla.
      * Refresca los datos del menú lateral (nombre, carrera, foto).
@@ -84,9 +82,9 @@ class AgregarTareaActivity : AppCompatActivity() {
         actualizarNavHeader()
     }
 
-    // -------------------------------------------------------
-    // ---------------- INICIALIZAR VISTAS --------------------
-    // -------------------------------------------------------
+
+    //INICIALIZAR VISTAS
+
     /**
      * Asocia las variables con sus elementos del XML.
      */
@@ -102,9 +100,9 @@ class AgregarTareaActivity : AppCompatActivity() {
         btnMenu = findViewById(R.id.btnMenu)
     }
 
-    // -------------------------------------------------------
-    // --------------- ACTUALIZAR MENÚ LATERAL ----------------
-    // -------------------------------------------------------
+
+    //  ACTUALIZAR MENÚ LATERAL
+
     /**
      * Actualiza la foto, nombre y carrera mostrados en el encabezado del menú lateral.
      */
@@ -132,9 +130,8 @@ class AgregarTareaActivity : AppCompatActivity() {
         }
     }
 
-    // -------------------------------------------------------
-    // ---------------- CARGAR DATOS DE TAREA -----------------
-    // -------------------------------------------------------
+
+    //  CARGAR DATOS DE TAREA
     /**
      * Carga los datos de una tarea existente en el formulario
      * cuando el usuario la edita.
@@ -161,9 +158,9 @@ class AgregarTareaActivity : AppCompatActivity() {
         }
     }
 
-    // -------------------------------------------------------
-    // ------------------ MOSTRAR CALENDARIO ------------------
-    // -------------------------------------------------------
+
+    //  MOSTRAR CALENDARIO
+
     /**
      * Abre un selector de fecha (DatePickerDialog)
      * y coloca la fecha seleccionada en el campo correspondiente.
@@ -182,9 +179,9 @@ class AgregarTareaActivity : AppCompatActivity() {
         datePicker.show()
     }
 
-    // -------------------------------------------------------
-    // --------------------- GUARDAR TAREA --------------------
-    // -------------------------------------------------------
+    //
+    //  GUARDAR TAREA
+
     /**
      * Valida los datos del formulario y guarda una nueva tarea o actualiza una existente.
      * - Verifica que haya nombre, fecha y clases disponibles.
@@ -240,9 +237,9 @@ class AgregarTareaActivity : AppCompatActivity() {
         }
     }
 
-    // -------------------------------------------------------
-    // ----------------- CARGAR CLASES EN SPINNER -------------
-    // -------------------------------------------------------
+
+    //  CARGAR CLASES EN SPINNER
+
     /**
      * Llena el spinner con los nombres de las clases registradas
      * para que el usuario asocie una tarea a una clase.
@@ -258,11 +255,9 @@ class AgregarTareaActivity : AppCompatActivity() {
         }
     }
 
-    // -------------------------------------------------------
-    // ------------------ CONFIGURAR MENÚ ----------------------
-    // -------------------------------------------------------
+
     /**
-     * Configura la navegación del menú lateral (drawer).
+     * Configura la navegación del menú latera
      * Permite moverse entre las distintas pantallas del sistema.
      */
     private fun configurarMenu() {

@@ -35,9 +35,9 @@ class TareaAdapter(
         val cbCompletada: CheckBox = view.findViewById(R.id.checkBoxFinal)
     }
 
-    // -------------------------------------------------------
-    // ---------------- CREACIÓN DE VISTAS --------------------
-    // -------------------------------------------------------
+
+    //  CREACIÓN DE VISTAS
+
     /**
      * Infla el layout para cada elemento de la lista.
      */
@@ -47,9 +47,9 @@ class TareaAdapter(
         return ViewHolder(view)
     }
 
-    // -------------------------------------------------------
-    // ---------------- ASIGNACIÓN DE DATOS -------------------
-    // -------------------------------------------------------
+    //
+    //  ASIGNACIÓN DE DATOS
+
     /**
      * Asigna los valores de cada tarea a su vista correspondiente.
      * También maneja la lógica de colores, tachado y acciones del usuario.
@@ -84,7 +84,7 @@ class TareaAdapter(
             holder.tvNombre.alpha = 1.0f
         }
 
-        // Listener del checkbox (marcar completada)
+        // Listener del checkbox marcar completada
         holder.cbCompletada.setOnCheckedChangeListener { _, isChecked ->
             onCheckClick(tarea.id, isChecked)
             // Actualiza la apariencia inmediatamente
@@ -100,21 +100,21 @@ class TareaAdapter(
         // Botón eliminar
         holder.btnEliminar.setOnClickListener { onEliminarClick(tarea.id) }
 
-        // Clic en el item completo (para editar o ver detalles)
+        // Clic en el item completo para editar o ver detalles
         holder.itemView.setOnClickListener { onItemClick(tarea.id) }
     }
 
-    // -------------------------------------------------------
-    // ---------------- TAMAÑO DE LA LISTA --------------------
-    // -------------------------------------------------------
+
+    //  TAMAÑO DE LA LISTA
+
     /**
      * Retorna el número total de tareas en la lista.
      */
     override fun getItemCount() = listaTareas.size
 
-    // -------------------------------------------------------
-    // ---------------- ACTUALIZAR LA LISTA -------------------
-    // -------------------------------------------------------
+
+    //  ACTUALIZAR LA LISTA
+
     /**
      * Actualiza la lista de tareas mostrada en pantalla.
      * Se usa al agregar, eliminar o modificar tareas.

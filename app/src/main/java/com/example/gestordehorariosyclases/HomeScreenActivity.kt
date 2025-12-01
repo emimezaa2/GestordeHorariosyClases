@@ -20,7 +20,7 @@ class HomeScreenActivity : AppCompatActivity() {
     private lateinit var dbHelper: BaseDeDatosHelper
     private lateinit var prefs: SharedPreferences
 
-    // Componentes UI
+    // Componentes gui
     private lateinit var tvSaludo: TextView
     private lateinit var tvNombreUsuario: TextView
     private lateinit var navView: NavigationView
@@ -60,12 +60,10 @@ class HomeScreenActivity : AppCompatActivity() {
         configurarSaludo()
     }
 
-    // -------------------------------------------------------
-    // -------------------- SALUDO DE BIENVENIDA -------------
-    // -------------------------------------------------------
+
     /**
      * Muestra un saludo dinámico según la hora del día
-     * y coloca el nombre del usuario guardado en preferencias.
+     * y coloca el nombre del usuario guardado
      */
     private fun configurarSaludo() {
         val nombreGuardado = prefs.getString("user_name", "¡Estudiante!")
@@ -80,13 +78,11 @@ class HomeScreenActivity : AppCompatActivity() {
         tvSaludo.text = saludo
     }
 
-    // -------------------------------------------------------
-    // -------------------- TARJETAS RESUMEN -----------------
-    // -------------------------------------------------------
+
     /**
      * Carga la información principal que se muestra en las tarjetas:
-     * - Clases programadas para hoy.
-     * - Número total de tareas pendientes.
+     *  Clases programadas para hoy.
+     *  Número total de tareas pendientes.
      */
     private fun cargarDatosTarjetas() {
         val clasesHoy = dbHelper.contarClasesHoy()
@@ -96,14 +92,12 @@ class HomeScreenActivity : AppCompatActivity() {
         findViewById<TextView>(R.id.tvPendientesTotalCount).text = pendientesTotal.toString()
     }
 
-    // -------------------------------------------------------
-    // --------------- ACTUALIZAR CABECERA DEL MENÚ ----------
-    // -------------------------------------------------------
+
     /**
-     * Refresca los datos del encabezado del menú lateral (Navigation Drawer):
-     * - Nombre del usuario
-     * - Carrera o rol
-     * - Foto de perfil (si existe)
+     * actualiza los datos del encabezado del menú lateral
+     *  Nombre del usuario
+     * Carrera o rol
+     * Foto de perfil
      */
     private fun actualizarNavHeader() {
         val navHeader = navView.getHeaderView(0)
@@ -129,9 +123,7 @@ class HomeScreenActivity : AppCompatActivity() {
         }
     }
 
-    // -------------------------------------------------------
-    // ------------------- CONFIGURAR MENÚ --------------------
-    // -------------------------------------------------------
+
     /**
      * Define las acciones del menú lateral (Navigation Drawer).
      * Cada opción redirige a un módulo diferente de la aplicación.
