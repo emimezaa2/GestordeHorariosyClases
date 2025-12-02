@@ -13,15 +13,7 @@ import android.icu.util.Calendar
  */
 class BaseDeDatosHelper(context: Context) : SQLiteOpenHelper(context, "Horario.db", null, 1) {
 
-    // -------------------------------------------------------
-    // ------------------ CONFIGURACION INICIAL --------------
-    // -------------------------------------------------------
 
-    // Se activa el soporte de llaves foráneas para que al eliminar una clase, también se borren sus tareas
-    override fun onConfigure(db: SQLiteDatabase) {
-        super.onConfigure(db)
-        db.setForeignKeyConstraintsEnabled(true)
-    }
 
     // Se crean las tablas de clases y tareas cuando se instala la app por primera vez
     override fun onCreate(db: SQLiteDatabase?) {
@@ -61,9 +53,9 @@ class BaseDeDatosHelper(context: Context) : SQLiteOpenHelper(context, "Horario.d
         onCreate(db)
     }
 
-    // -------------------------------------------------------
-    // ------------------ CRUD DE CLASES ----------------------
-    // -------------------------------------------------------
+    //
+    //  CRUD DE CLASES
+    //
 
     /**
      * Inserta una nueva clase en la base de datos.
@@ -170,9 +162,15 @@ class BaseDeDatosHelper(context: Context) : SQLiteOpenHelper(context, "Horario.d
         return filas > 0
     }
 
-    // -------------------------------------------------------
-    // ------------------ CRUD DE TAREAS ----------------------
-    // -------------------------------------------------------
+
+    // Se activa el soporte de llaves foráneas para que al eliminar una clase también se borren sus tareas
+    override fun onConfigure(db: SQLiteDatabase) {
+        super.onConfigure(db)
+        db.setForeignKeyConstraintsEnabled(true)
+    }
+
+    //  CRUD DE TAREAS
+    //
 
     /**
      * Inserta una nueva tarea.

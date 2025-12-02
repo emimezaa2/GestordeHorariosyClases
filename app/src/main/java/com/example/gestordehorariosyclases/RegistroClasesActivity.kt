@@ -63,7 +63,6 @@ class RegistroClasesActivity : AppCompatActivity() {
 
         dbHelper = BaseDeDatosHelper(this)
         prefs = getSharedPreferences("UserPrefs", Context.MODE_PRIVATE)
-
         // Inicialización de vistas
         drawerLayout = findViewById(R.id.drawer_layout)
         navView = findViewById(R.id.nav_view)
@@ -75,25 +74,21 @@ class RegistroClasesActivity : AppCompatActivity() {
         etHoraInicio = findViewById(R.id.etHoraInicio)
         etHoraFin = findViewById(R.id.etHoraFin)
         btnGuardar = findViewById(R.id.btnGuardar)
-
         cbLun = findViewById(R.id.cbLun)
         cbMar = findViewById(R.id.cbMar)
         cbMie = findViewById(R.id.cbMie)
         cbJue = findViewById(R.id.cbJue)
         cbVie = findViewById(R.id.cbVie)
         cbSab = findViewById(R.id.cbSab)
-
         rgColorClase = findViewById(R.id.rgColorClase)
-
         // Configuración del menú lateral
         btnMenu.setOnClickListener { drawerLayout.openDrawer(GravityCompat.START) }
         configurarMenu()
-
         // Selectores de hora
         etHoraInicio.setOnClickListener { mostrarReloj(etHoraInicio) }
         etHoraFin.setOnClickListener { mostrarReloj(etHoraFin) }
 
-        // Si venimos desde otra pantalla con ID_CLASE, se cargan los datos para editar
+        //  venimos desde otra pantalla con ID_CLASE se cargan los datos para editar
         if (intent.hasExtra("ID_CLASE")) {
             idClaseEditar = intent.getIntExtra("ID_CLASE", 0)
             cargarDatosParaEditar(idClaseEditar!!)
@@ -161,9 +156,6 @@ class RegistroClasesActivity : AppCompatActivity() {
         timePicker.show()
     }
 
-
-    //  OBTENER DÍAS SELECCIONADOS
-
     /**
      * Devuelve una cadena con los días seleccionados en formato "Lun, Mar, Mié..."
      */
@@ -218,9 +210,6 @@ class RegistroClasesActivity : AppCompatActivity() {
         }
     }
 
-    //
-    //  GUARDAR CLASE
-
     /**
      * Valida los datos ingresados y guarda la clase en la base de datos.
      * Si ya existe, actualiza los datos.
@@ -232,7 +221,6 @@ class RegistroClasesActivity : AppCompatActivity() {
         val dias = obtenerDiasSeleccionados()
         val horaInicio = etHoraInicio.text.toString()
         val horaFin = etHoraFin.text.toString()
-
         // Determinar color
         val idColor = rgColorClase.checkedRadioButtonId
         val colorHex = when (idColor) {
@@ -242,12 +230,10 @@ class RegistroClasesActivity : AppCompatActivity() {
             R.id.rbVerde -> "#4CAF50"
             else -> "#6200EE"
         }
-
         if (nombre.isEmpty() || dias.isEmpty() || horaInicio.isEmpty()) {
             Toast.makeText(this, "Faltan datos", Toast.LENGTH_SHORT).show()
             return
         }
-
         val clase = ClaseModelo(
             id = idClaseEditar ?: 0,
             nombre = nombre,
@@ -258,7 +244,6 @@ class RegistroClasesActivity : AppCompatActivity() {
             horaFin = horaFin,
             color = colorHex
         )
-
         val exito = if (idClaseEditar == null) {
             dbHelper.insertarClase(clase).also {
                 if (it) {
@@ -272,7 +257,6 @@ class RegistroClasesActivity : AppCompatActivity() {
                 finish()
             }
         }
-
         if (!exito) Toast.makeText(this, "Error al guardar", Toast.LENGTH_SHORT).show()
     }
 
@@ -297,7 +281,7 @@ class RegistroClasesActivity : AppCompatActivity() {
 
 
     /**
-     * Configura el menú lateral (Navigation Drawer)
+     * Configura el menú lateral
      * y permite navegar entre las diferentes pantallas del sistema.
      */
     private fun configurarMenu() {

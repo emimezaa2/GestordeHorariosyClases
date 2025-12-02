@@ -41,11 +41,11 @@ class HomeScreenActivity : AppCompatActivity() {
         drawerLayout = findViewById(R.id.drawer_layout)
         btnMenu = findViewById(R.id.btnMenu)
 
-        configurarMenu()          // Cargar lógica de navegación lateral
-        configurarSaludo()        // Mostrar saludo según la hora del día
-        cargarDatosTarjetas()     // Mostrar estadísticas principales
+        configurarMenu()
+        configurarSaludo()
+        cargarDatosTarjetas()     //  estadísticas principales
 
-        // Botón que redirige al Dashboard
+        // Botón que manda al dash
         val btnIrADashboard = findViewById<Button>(R.id.btnIrADashboard)
         btnIrADashboard.setOnClickListener {
             startActivity(Intent(this, DashboardActivity::class.java))
@@ -55,7 +55,7 @@ class HomeScreenActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        // Al volver a esta pantalla se actualiza el saludo y el menú lateral
+        // a volver  se actualiza el saludo y el menú
         actualizarNavHeader()
         configurarSaludo()
     }
